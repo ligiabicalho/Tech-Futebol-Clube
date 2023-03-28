@@ -1,6 +1,7 @@
 version: '3.9'
 services:
   frontend:
+    container_name: app_frontend
     build: ./frontend
     ports:
       - 3000:3000
@@ -23,9 +24,9 @@ services:
     platform: linux/x86_64
     working_dir: /app-backend
     # Caso queira que o container esteja atualizado durante o desenvolvimento, sem que você precise ficar fazendo down e up dos containers, descomente as 3 linhas abaixo
-    # command: dev 
-    # volumes: 
-    #   - ./backend/src:/app-backend/src
+    command: dev 
+    volumes: 
+      - ./backend/src:/app-backend/src
     depends_on:
       db:
         condition: service_healthy
