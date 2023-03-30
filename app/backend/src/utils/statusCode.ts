@@ -1,11 +1,13 @@
-// pq não posso usar maiúsculas como no TrybeSmith??
-const statusCodes = {
-  ok: 200,
-  notFound: 404,
-  created: 201,
-  badRequest: 400,
-  unauthorized: 401,
-  noContent: 204,
-};
+// pq não posso usar const e maiúsculas como no TrybeSmith??
+// enum -> define/restringe um conjunto de valores permitidos para constantes.
+enum statusCodes {
+  OK = 200,
+  CREATED = 201,
+  NO_CONTENT = 204,
+  BAD_REQUEST = 400,
+  UNAUTHORIZED = 401,
+  NOT_FOUND = 404,
+  INTERNAL_SERVER_ERROR = 500,
+}
 
 export default statusCodes;
