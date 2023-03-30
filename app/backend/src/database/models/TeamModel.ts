@@ -1,6 +1,6 @@
 import { Model, INTEGER, STRING } from 'sequelize';
+// import ITeam from 'src/interfaces/ITeams';
 import db from '.';
-// import OtherModel from './OtherModel';
 
 class Team extends Model {
   declare id: number;
@@ -19,9 +19,10 @@ Team.init({
     allowNull: false,
   },
 }, {
+  modelName: 'team', // ou apenas tableName?? -> doc sequelize! (https://sequelize.org/docs/v6/other-topics/typescript/)
+  tableName: 'teams',
   underscored: true,
   sequelize: db,
-  modelName: 'team',
   timestamps: false,
 });
 

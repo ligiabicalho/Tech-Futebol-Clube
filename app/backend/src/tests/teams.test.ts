@@ -5,7 +5,7 @@ import chaiHttp = require('chai-http');
 
 import { app } from '../app';
 import Team from '../database/models/TeamModel';
-// import ITeam from '../interfaces/ITeams';
+// import { ITeam } from '../interfaces/ITeams';
 import { allTeams } from './mocks/teamsMock';
 
 import { Response } from 'superagent';
@@ -17,13 +17,13 @@ const { expect } = chai;
 describe('Verifica método GET em /teams', () => {
   let chaiHttpResponse: Response;
 
-  before(async () => {
+  beforeEach(async () => {
     sinon
-      .stub(Team, "findAll") // getAll na Sequelize é findAll
-      .resolves(allTeams as Team[]); // a própria Model serve como tipo
+      .stub(Team, "findAll") // getAll na Sequelize é findAll!
+      .resolves(allTeams as Team[]); // a própria Model serve como tipo.
   });
 
-  after(() => {
+  afterEach(() => {
     (Team.findAll as sinon.SinonStub).restore();
   })
  
