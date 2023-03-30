@@ -13,10 +13,9 @@ module.exports = {
         field: 'team_name',
       }, 
     });
-
   },
 
-  down: async (queryInterface, Sequelize) => {
+  down: async (queryInterface) => {
     await queryInterface.dropTable('teams');
 
   }
