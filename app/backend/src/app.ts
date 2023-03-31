@@ -1,7 +1,7 @@
 import * as express from 'express';
 import 'express-async-errors'; // Essa biblioteca utiliza o middleware de Error e não precisa try/catch;
 import errorHandler from './middlewares/ErrorHandler';
-import TeamRouter from './routers';
+import { TeamRouter, LoginRouter } from './routers';
 
 class App {
   public app: express.Express;
@@ -11,8 +11,8 @@ class App {
 
     this.config();
     // Não remover essa rota
-    this.app.get('/', (req, res) => res.json({ ok: true }));
     this.routes();
+    this.app.get('/', (req, res) => res.json({ ok: true }));
   }
 
   private config():void {
@@ -29,6 +29,7 @@ class App {
 
   private routes(): void {
     this.app.use('/teams', TeamRouter);
+    this.app.use('/login', LoginRouter);
     this.app.use(errorHandler);
   }
 
