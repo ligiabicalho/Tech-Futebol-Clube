@@ -56,7 +56,7 @@ describe('Verifica rota /teams', () => {
       chaiHttpResponse = await chai
         .request(app)
         .get('/teams/:99');
-      const messageNotFound = { error: 'Team does not exist in database!'};
+      const messageNotFound = { message: 'Team does not exist in database!'};
       expect(chaiHttpResponse.status).to.be.equal(404);
       expect(chaiHttpResponse.body).to.deep.equal(messageNotFound);    
     });
