@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import NotFound from '../errors/NotFound';
 import statusCodes from '../utils/statusCode';
-import TeamService from '../services';
+import { TeamService } from '../services';
 
 export default class TeamController {
   static async getAll(_req: Request, res: Response): Promise<void> {
