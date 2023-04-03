@@ -1,8 +1,7 @@
 import { Request, Response } from 'express';
-import { decode } from 'punycode';
 import statusCodes from '../utils/statusCode';
 import { UserService } from '../services';
-import { IDecoded, IPayload } from '../interfaces/IUser';
+import { IPayload } from '../interfaces/IUser';
 import TokenJWT from '../auth/TokenJWT';
 import Unauthorized from '../errors/Unauthorized';
 
