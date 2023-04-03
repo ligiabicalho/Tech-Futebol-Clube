@@ -13,5 +13,6 @@ router.post(
   verifyLogin,
   (req, res) => loginController.login(req, res),
 );
+router.get('/role', (req, res) => loginController.getRole(req, res));
 
 export default router;
