@@ -1,3 +1,4 @@
+import 'express-async-errors';
 import { compareSync } from 'bcryptjs'; // (senha inserida, senha criptografada no db) return boolean;
 import { ModelStatic } from 'sequelize';
 import { IPayload, UserLogin } from '../interfaces/IUser';
@@ -16,8 +17,9 @@ export default class UserService {
   async login(userLogin: UserLogin): Promise<string> {
     const { email, password } = userLogin;
     const user = await this._userModel.findOne({ where: { email }, raw: true }); // raw: true -> retorna JSON leve, ao invés de um Model completo.
+    // console.log('USER email:', email, 'senha:', password, 'retorno db:', user, 'if:', !user);
 
-    if (!user || !password || !compareSync(password, user.password)) { // se email (usuário não encotrado) ou a senha não estiver correta.
+    if (!user || !compareSync(password, user.password)) { // se email (usuário não encotrado) ou a senha não estiver correta.
       throw new Unauthorized('Invalid email or password');
     }
 

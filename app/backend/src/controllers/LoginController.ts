@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import statusCodes from '../utils/statusCode';
 import { UserService } from '../services';
+import 'express-async-errors';
 
 export default class LoginController {
   private _service: UserService;
