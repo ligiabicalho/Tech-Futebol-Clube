@@ -1,5 +1,4 @@
 import { Model, INTEGER, STRING } from 'sequelize';
-// import ITeam from 'src/interfaces/ITeams';
 import db from '.';
 
 class Team extends Model {
@@ -25,16 +24,5 @@ Team.init({
   sequelize: db,
   timestamps: false,
 });
-
-/**
-  * `Workaround` para aplicar as associations em TS:
-  * Associations 1:N devem ficar em uma das instâncias de modelo
-  * */
-
-// OtherModel.belongsTo(Team, { foreignKey: 'campoA', as: 'campoEstrangeiroA' });
-// OtherModel.belongsTo(Team, { foreignKey: 'campoB', as: 'campoEstrangeiroB' });
-
-// Team.hasMany(OtherModel, { foreignKey: 'campoC', as: 'campoEstrangeiroC' });
-// Team.hasMany(OtherModel, { foreignKey: 'campoD', as: 'campoEstrangeiroD' });
 
 export default Team;
