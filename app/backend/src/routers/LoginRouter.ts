@@ -11,9 +11,7 @@ router.post(
   '/',
   verifyRequiredFields('login'),
   verifyLogin,
-  (req, res) => {
-    loginController.login(req, res);
-  },
+  (req, res) => loginController.login(req, res),
 );
 
 export default router;

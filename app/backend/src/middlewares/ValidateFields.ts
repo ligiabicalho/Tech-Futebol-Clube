@@ -1,4 +1,4 @@
-import * as Joi from 'joi'; // tem q instalar dentro do container tb!!
+import * as Joi from 'joi'; // Libs add posteriormente tem q instalar dentro do container tb!!
 import { Request, Response, NextFunction } from 'express';
 import Unauthorized from '../errors/Unauthorized';
 
