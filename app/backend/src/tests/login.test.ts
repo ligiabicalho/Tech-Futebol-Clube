@@ -4,11 +4,11 @@ import * as chai from 'chai';
 import chaiHttp = require('chai-http');
 
 import { app } from '../app';
+import * as jwt from 'jsonwebtoken';
+import * as bcrypt from 'bcryptjs';
 import User from '../database/models/UserModel';
 import { Response } from 'superagent';
 import { token, user, userValid } from './mocks/loginMock';
-import * as bcrypt from 'bcryptjs';
-import * as jwt from 'jsonwebtoken';
 
 chai.use(chaiHttp);
 

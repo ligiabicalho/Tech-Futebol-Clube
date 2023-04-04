@@ -1,5 +1,5 @@
 import User from "../../database/models/UserModel"
-import { IUser } from "../../interfaces/IUser"
+
 export const adminValid = {
   email: "admin@admin.com",
   password: "secret_admin"
@@ -20,7 +20,8 @@ export const userInvalid = {
   password: "senha_invalida" 
 }
 
-export const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhVmFsdWVzIjp7ImlkIjoxLCJ1c2VybmFtZSI6IkFkbWluIiwicm9sZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJwYXNzd29yZCI6IiQyYSQwOCR4aS5IeGsxY3pBTzBuWlIuLkIzOTN1MTBhRUQwUlExTjNQQUVYUTdIeHRMaktQRVpCdS5QVyJ9LCJfcHJldmlvdXNEYXRhVmFsdWVzIjp7ImlkIjoxLCJ1c2VybmFtZSI6IkFkbWluIiwicm9sZSI6ImFkbWluIiwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJwYXNzd29yZCI6IiQyYSQwOCR4aS5IeGsxY3pBTzBuWlIuLkIzOTN1MTBhRUQwUlExTjNQQUVYUTdIeHRMaktQRVpCdS5QVyJ9LCJ1bmlxbm8iOjEsIl9jaGFuZ2VkIjp7fSwiX29wdGlvbnMiOnsiaXNOZXdSZWNvcmQiOmZhbHNlLCJfc2NoZW1hIjpudWxsLCJfc2NoZW1hRGVsaW1pdGVyIjoiIiwicmF3Ijp0cnVlLCJhdHRyaWJ1dGVzIjpbImlkIiwidXNlcm5hbWUiLCJyb2xlIiwiZW1haWwiLCJwYXNzd29yZCJdfSwiaXNOZXdSZWNvcmQiOmZhbHNlLCJpYXQiOjE2Nzk1MjQwMjIsImV4cCI6MTY3OTUyNzYyMn0.-Arx7Og4eNHF8Fw-VL5XhmElyWlTiCsBPPEHK3qmr1w';
+export const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJVc2VyIiwiZW1haWwiOiJ1c2VyQHVzZXIuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODA2MzUwODcsImV4cCI6MTY4MDgwNzg4N30.ocIqClO-PRbIcnc-HXScjVJhwdyEPpMbvQar0m4k3Eg';
+
 
 export const user = {
   id: 1,

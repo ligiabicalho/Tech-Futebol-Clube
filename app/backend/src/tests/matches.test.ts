@@ -7,6 +7,7 @@ import { app } from '../app';
 import Match from '../database/models/MatchModel';
 import { Response } from 'superagent';
 import { allMatches, MatchesRes} from './mocks/matchesMock';
+import { MatchRes } from '../interfaces/IMatch';
 // import { IMatch, MatchRes } from '../interfaces/IMatch';
 
 chai.use(chaiHttp);
@@ -24,7 +25,7 @@ describe('Verifica rota /matches', () => {
     it('retorna status 200 e a lista completa de partidas', async () => {
       sinon
         .stub(Match, "findAll")
-        .resolves(allMatches as Match[]);
+        .resolves(MatchesRes as unknown as Match[]);
 
       chaiHttpResponse = await chai
         .request(app)

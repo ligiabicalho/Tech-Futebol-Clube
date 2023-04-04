@@ -1,3 +1,5 @@
+import { IMatch, MatchRes } from "../../interfaces/IMatch";
+
 const allMatches = [
   {
     "id": 1,
