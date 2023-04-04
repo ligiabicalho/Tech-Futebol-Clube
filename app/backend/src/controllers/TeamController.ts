@@ -4,14 +4,19 @@ import statusCodes from '../utils/statusCode';
 import { TeamService } from '../services';
 
 export default class TeamController {
-  static async getAll(_req: Request, res: Response): Promise<void> {
-    const teams = await TeamService.getAll();
+  private _service: TeamService;
+  constructor() {
+    this._service = new TeamService();
+  }
+
+  async getAll(_req: Request, res: Response): Promise<void> {
+    const teams = await this._service.getAll();
     res.status(statusCodes.OK).json(teams);
   }
 
-  static async getById(req: Request, res: Response): Promise<void> {
+  async getById(req: Request, res: Response): Promise<void> {
     const { id } = req.params;
-    const team = await TeamService.getById(id);
+    const team = await this._service.getById(id);
     if (!team) throw new NotFound('Team does not exist in database!');
     res.status(statusCodes.OK).json(team);
   }

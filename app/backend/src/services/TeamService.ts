@@ -1,5 +1,6 @@
+import { ModelStatic } from 'sequelize';
 import Team from '../database/models/TeamModel';
-import { ITeam } from '../interfaces/ITeams';
+import { ITeam } from '../interfaces/ITeam';
 
 // class Model no sequelize possui métodos estáticos: findAll, findByPk,
 // Para instanciá-la deve tipar com ModelStatic ou simplesmente chamá-la em um método tb estático.
@@ -8,13 +9,18 @@ import { ITeam } from '../interfaces/ITeams';
 // https://sequelize.org/api/v6/class/src/model.js~model
 
 export default class TeamService {
-  static async getAll(): Promise<ITeam[]> {
-    const teams = await Team.findAll();
+  private _teamModel: ModelStatic<Team>;
+  constructor() {
+    this._teamModel = Team;
+  }
+
+  async getAll(): Promise<ITeam[]> {
+    const teams = await this._teamModel.findAll();
     return teams;
   }
 
-  static async getById(id: string): Promise<ITeam | null> {
-    const team = await Team.findByPk(id);
+  async getById(id: string): Promise<ITeam | null> {
+    const team = await this._teamModel.findByPk(id);
     return team;
   }
 }

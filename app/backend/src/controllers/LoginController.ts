@@ -19,11 +19,8 @@ export default class LoginController {
 
     const { id, username, role } = user;
     const payload: IPayload = { id, username, email, role };
-    const token = this._tokenJWT.generateToken(payload);
+    const token = await this._tokenJWT.generateToken(payload);
 
-    if (!token) {
-      throw new Unauthorized('Token not found');
-    }
     res.status(statusCodes.OK).json({ token });
     // .redirect('/matches');
   }
@@ -32,7 +29,7 @@ export default class LoginController {
     const { authorization } = req.headers;
     if (!authorization) throw new Unauthorized('Token not found');
 
-    const decoded = this._tokenJWT.validateToken(authorization);
+    const decoded = await this._tokenJWT.validateToken(authorization);
     res.status(statusCodes.OK).json({ role: decoded.role });
   }
 }
