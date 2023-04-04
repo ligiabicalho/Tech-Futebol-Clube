@@ -1,6 +1,7 @@
 import { IMatch, MatchRes } from "../../interfaces/IMatch";
+import Match from '../../database/models/MatchModel';
 
-const allMatches = [
+const allMatches: IMatch[] = [
   {
     "id": 1,
     "homeTeamId": 16,
@@ -19,7 +20,7 @@ const allMatches = [
   }
 ]
 
-const MatchesRes = [
+const MatchesRes: MatchRes[] = [
   {
     "id": 1,
     "homeTeamId": 16,
