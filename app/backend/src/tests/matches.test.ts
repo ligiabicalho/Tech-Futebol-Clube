@@ -6,8 +6,9 @@ import chaiHttp = require('chai-http');
 import { app } from '../app';
 import Match from '../database/models/MatchModel';
 import { Response } from 'superagent';
-import { allMatches, MatchesRes} from './mocks/matchesMock';
-import { MatchRes } from '../interfaces/IMatch';
+import { MatchesRes} from './mocks/matchesMock';
+import { token } from './mocks/loginMock';
+// import { MatchRes } from '../interfaces/IMatch';
 // import { IMatch, MatchRes } from '../interfaces/IMatch';
 
 chai.use(chaiHttp);

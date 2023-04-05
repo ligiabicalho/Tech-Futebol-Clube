@@ -1,4 +1,5 @@
 import User from "../../database/models/UserModel"
+import { IPayload } from "../../interfaces"
 
 export const adminValid = {
   email: "admin@admin.com",
@@ -30,3 +31,10 @@ export const user = {
   password: "secret_user",
   role: "user"
 } as User;
+
+export const payload: IPayload = {
+  id: 1,
+  username: 'user',
+  email: 'user@user.com',
+  role: 'user'
+} 

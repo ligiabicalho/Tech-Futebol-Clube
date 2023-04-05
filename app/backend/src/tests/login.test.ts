@@ -8,7 +8,7 @@ import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcryptjs';
 import User from '../database/models/UserModel';
 import { Response } from 'superagent';
-import { token, user, userValid } from './mocks/loginMock';
+import { payload, token, user, userValid } from './mocks/loginMock';
 
 chai.use(chaiHttp);
 
@@ -39,7 +39,8 @@ describe('Verifica rota /login', () => {
   });
   describe('Acesso negado método POST no endpoint /login', () => {
     const messageError = { message: 'All fields must be filled' }
-    it('retorna status 400 quando email não é informado', async () => {
+
+    it('Quando email não é informado, retorna status 400', async () => {
       chaiHttpResponse = await chai
         .request(app).post('/login').send(userValid.password);
     
@@ -47,7 +48,7 @@ describe('Verifica rota /login', () => {
       expect(chaiHttpResponse.body).to.deep.equal(messageError);    
     });
 
-    it('retorna status 400 quando a senha não é informada', async () => {
+    it('Quando a senha não é informada, retorna status 400', async () => {
       chaiHttpResponse = await chai
         .request(app).post('/login').send(userValid.email);
       const messageNotFound = { error: 'Team does not exist in database!'};
