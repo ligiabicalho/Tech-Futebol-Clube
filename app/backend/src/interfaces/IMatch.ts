@@ -3,9 +3,12 @@ export interface IGoals {
   awayTeamGoals: number,
 }
 
-export interface IMatchCreate extends IGoals {
+export interface IMatchTeams {
   homeTeamId: number,
   awayTeamId: number,
+}
+
+export interface IMatchCreate extends IGoals, IMatchTeams {
 }
 
 export interface IMatch extends IGoals, IMatchCreate {
@@ -20,4 +23,9 @@ export interface MatchRes extends IMatch {
   awayTeam: {
     teamName: string
   }
+}
+
+export interface IValidateMatchTeams{
+  IsSameTeams(): boolean,
+  ExistTeams(): Promise<boolean>
 }

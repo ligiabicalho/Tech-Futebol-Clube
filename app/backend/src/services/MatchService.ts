@@ -45,6 +45,7 @@ export default class MatchService {
 
   async create(match: IMatchCreate): Promise<IMatch> {
     const { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals } = match;
+
     const newMatch = await this._matchModel.create(
       { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals, inProgress: true },
     );

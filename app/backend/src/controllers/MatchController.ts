@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import statusCodes from '../utils/statusCode';
 import { MatchService } from '../services';
-import BadRequest from '../errors/BadRequest';
-import { IGoals, IMatchCreate } from '../interfaces';
+import { Unprocessable, NotFound, BadRequest } from '../errors';
+import ValidateMatchTeams from '../validations/velidateMatchTeams';
+import { IGoals } from '../interfaces';
 
 export default class MatchController {
   constructor(private _service: MatchService) {
@@ -32,8 +33,19 @@ export default class MatchController {
   }
 
   async create(req: Request, res: Response): Promise<void> {
-    const { body } = req;
-    const newMatch = await this._service.create(body);
+    const { homeTeamId, awayTeamId } = req.body;
+    const validateMatchTeams = new ValidateMatchTeams({ homeTeamId, awayTeamId });
+
+    if (validateMatchTeams.IsSameTeams()) {
+      throw new Unprocessable('It is not possible to create a match with two equal teams');
+    }
+
+    const existTeams = await validateMatchTeams.ExistTeams();
+    if (!existTeams) {
+      throw new NotFound('There is no team with such id!');
+    }
+
+    const newMatch = await this._service.create(req.body);
     if (!newMatch) throw new BadRequest('Erro ao criar nova partida');
 
     res.status(statusCodes.CREATED).json(newMatch);
