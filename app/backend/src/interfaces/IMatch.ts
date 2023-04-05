@@ -1,9 +1,12 @@
-export interface IMatch {
+export interface IGoals {
+  homeTeamGoals: number,
+  awayTeamGoals: number,
+}
+
+export interface IMatch extends IGoals {
   id: number
   homeTeamId: number,
-  homeTeamGoals: number,
   awayTeamId: number,
-  awayTeamGoals: number,
   inProgress: boolean,
 }
 

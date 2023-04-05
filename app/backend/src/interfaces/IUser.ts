@@ -12,8 +12,3 @@ export interface IPayload {
 
 export interface IUser extends UserLogin, IPayload{
 }
-
-export interface IDecoded extends IPayload {
-  iat: number;
-  exp: number;
-}
