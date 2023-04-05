@@ -28,4 +28,18 @@ export default class MatchService {
     );
     return updateMatch;
   }
+
+  async updateGoals(id: string, goals: IGoals): Promise<IMatch | number> {
+    const { homeTeamGoals, awayTeamGoals } = goals;
+    const [updateGoals] = await this._matchModel.update(
+      { homeTeamGoals,
+        awayTeamGoals,
+      },
+      { where: {
+        id,
+        inProgress: 1,
+      } },
+    );
+    return updateGoals;
+  }
 }

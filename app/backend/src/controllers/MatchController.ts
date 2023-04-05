@@ -21,4 +21,13 @@ export default class MatchController {
 
     res.status(statusCodes.OK).json({ message: 'Finish!' });
   }
+
+  async updateGoals(req: Request, res: Response): Promise<void> {
+    const { id } = req.params;
+    const { body } = req;
+    const update = await this._service.updateGoals(id as string, body as IGoals);
+    if (!update) throw new BadRequest('Gols não atualizados.');
+
+    res.status(statusCodes.OK).json({ message: 'Goal!' });
+  }
 }

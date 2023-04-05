@@ -11,6 +11,7 @@ const matchService = new MatchService();
 const matchController = new MatchController(matchService);
 
 router.get('/', (req, res) => matchController.getAll(req, res));
+router.patch('/:id/', verifyAuth, (req, res) => matchController.updateGoals(req, res));
 router.patch('/:id/finish', verifyAuth, (req, res) => matchController.updateProgress(req, res));
 
 export default router;
