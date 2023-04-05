@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import statusCodes from '../utils/statusCode';
 import { MatchService } from '../services';
 import BadRequest from '../errors/BadRequest';
-import { IGoals } from '../interfaces';
+import { IGoals, IMatchCreate } from '../interfaces';
 
 export default class MatchController {
   constructor(private _service: MatchService) {
@@ -29,5 +29,13 @@ export default class MatchController {
     if (!update) throw new BadRequest('Gols não atualizados.');
 
     res.status(statusCodes.OK).json({ message: 'Goal!' });
+  }
+
+  async create(req: Request, res: Response): Promise<void> {
+    const { body } = req;
+    const newMatch = await this._service.create(body);
+    if (!newMatch) throw new BadRequest('Erro ao criar nova partida');
+
+    res.status(statusCodes.CREATED).json(newMatch);
   }
 }

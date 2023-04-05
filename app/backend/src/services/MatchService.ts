@@ -1,7 +1,7 @@
 import { ModelStatic } from 'sequelize';
 import Match from '../database/models/MatchModel';
 import Team from '../database/models/TeamModel';
-import { IGoals, IMatch } from '../interfaces';
+import { IGoals, IMatch, IMatchCreate } from '../interfaces';
 
 export default class MatchService {
   constructor(private _matchModel: ModelStatic<Match> = Match) {
@@ -21,7 +21,7 @@ export default class MatchService {
     return matches;
   }
 
-  async updateProgress(id: string): Promise<IMatch | number> {
+  async updateProgress(id: string): Promise<number> {
     const [updateMatch] = await this._matchModel.update(
       { inProgress: 0 },
       { where: { id } },
@@ -29,7 +29,7 @@ export default class MatchService {
     return updateMatch;
   }
 
-  async updateGoals(id: string, goals: IGoals): Promise<IMatch | number> {
+  async updateGoals(id: string, goals: IGoals): Promise<number> {
     const { homeTeamGoals, awayTeamGoals } = goals;
     const [updateGoals] = await this._matchModel.update(
       { homeTeamGoals,
@@ -41,5 +41,13 @@ export default class MatchService {
       } },
     );
     return updateGoals;
+  }
+
+  async create(match: IMatchCreate): Promise<IMatch> {
+    const { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals } = match;
+    const newMatch = await this._matchModel.create(
+      { homeTeamId, homeTeamGoals, awayTeamId, awayTeamGoals, inProgress: true },
+    );
+    return newMatch;
   }
 }
