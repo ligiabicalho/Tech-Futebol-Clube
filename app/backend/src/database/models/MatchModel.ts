@@ -1,6 +1,7 @@
 import { BOOLEAN, Model, INTEGER } from 'sequelize';
 import db from '.';
 import Team from './TeamModel';
+// import { ILeaderBoard } from '../../interfaces';
 
 class Match extends Model {
   declare readonly id: number;
