@@ -1,3 +1,5 @@
+import Match from '../database/models/MatchModel';
+
 export interface IGoals {
   homeTeamGoals: number,
   awayTeamGoals: number,
@@ -16,7 +18,7 @@ export interface IMatch extends IGoals, IMatchCreate {
   inProgress: boolean,
 }
 
-export interface MatchRes extends IMatch {
+export interface MatchRes extends Match {
   homeTeam: {
     teamName: string
   },
