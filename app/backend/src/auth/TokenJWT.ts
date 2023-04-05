@@ -1,11 +1,11 @@
 import * as jwt from 'jsonwebtoken';
 import * as dotenv from 'dotenv';
-import { IDecoded, IPayload } from '../interfaces/IUser';
 import Unauthorized from '../errors/Unauthorized';
+import { IToken, IPayload, ITokenJWT } from '../interfaces';
 
 dotenv.config();
 
-export default class TokenJWT {
+export default class TokenJWT implements ITokenJWT {
   private _jwt = jwt;
   private _secret: jwt.Secret;
   private _options: jwt.SignOptions;
@@ -18,16 +18,16 @@ export default class TokenJWT {
     };
   }
 
-  generateToken(payload: IPayload): string {
+  generateToken(payload: IPayload): IToken {
     const token = this._jwt.sign(payload, this._secret, this._options);
     return token;
   }
 
-  validateToken(token: string): IDecoded {
+  validateToken(token: IToken): IPayload {
     this._jwt.verify(token, this._secret, (err, decoded) => {
       if (err) throw new Unauthorized('Token must be a valid token');
       return decoded; // na verdade não retorna nada (void), em outra estrutura poderia ser usado para inserir valor no request.
     });
-    return this._jwt.decode(token) as IDecoded;
+    return this._jwt.decode(token) as IPayload;
   }
 }

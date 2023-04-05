@@ -5,9 +5,7 @@ import Unauthorized from '../errors/Unauthorized';
 import User from '../database/models/UserModel';
 
 export default class UserService {
-  private _userModel: ModelStatic<User>;
-  constructor() {
-    this._userModel = User;
+  constructor(private _userModel: ModelStatic<User> = User) {
   }
 
   async login(userLogin: UserLogin): Promise<IUser> {

@@ -9,9 +9,7 @@ import { ITeam } from '../interfaces/ITeam';
 // https://sequelize.org/api/v6/class/src/model.js~model
 
 export default class TeamService {
-  private _teamModel: ModelStatic<Team>;
-  constructor() {
-    this._teamModel = Team;
+  constructor(private _teamModel: ModelStatic<Team> = Team) {
   }
 
   async getAll(): Promise<ITeam[]> {
