@@ -3,14 +3,13 @@ interface ITypePath {
   p1Id: string,
   tableP1Id: string,
   p2goals: string,
-  progress: boolean,
 }
 // o uso de tamplete literals não é um problmea de segurança neste caso.
 // as variáveis já são pré-definidas, dependendo do path.
 // não são dados enviados pelo usuário!
 
 const getQuery = (typePath: ITypePath): string => {
-  const { p1goals, p1Id, tableP1Id, p2goals, progress } = typePath;
+  const { p1goals, p1Id, tableP1Id, p2goals } = typePath;
   return `SELECT t.team_name AS name,
     SUM(((${p1goals} > ${p2goals})*3) + 
       ((${p1goals} = ${p2goals})*1)) AS totalPoints,
@@ -25,7 +24,7 @@ const getQuery = (typePath: ITypePath): string => {
       ((${p1goals} = ${p2goals})*1)) / 
       (COUNT(${p1Id})*3) * 100), 2) AS efficiency
     FROM matches AS m JOIN teams AS t ON t.id = ${tableP1Id}
-    WHERE m.in_progress = ${progress} GROUP BY ${tableP1Id}
+    WHERE m.in_progress = false GROUP BY ${tableP1Id}
     ORDER BY totalPoints DESC, totalVictories DESC, 
       goalsBalance DESC, goalsFavor DESC;`;
 };
