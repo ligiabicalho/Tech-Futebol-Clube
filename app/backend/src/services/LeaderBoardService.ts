@@ -12,7 +12,7 @@ export default class LeaderBoardService {
   public async getLeaderBoard(): Promise<ILeaderBoard[]> {
     return this._db.query(
       `${queryLeaderBoard}`,
-      { replacements: ['false'], type: QueryTypes.SELECT },
+      { type: QueryTypes.SELECT },
     );
   }
 }
