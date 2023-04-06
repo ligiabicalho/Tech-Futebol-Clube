@@ -1,7 +1,7 @@
 import { QueryTypes, Sequelize } from 'sequelize';
 import db from '../database/models';
 import { ILeaderBoard } from '../interfaces';
-import getQuery, { ITypePath } from '../utils/queryLeaderBoard';
+import { getQuery, queryGeral, ITypePath } from '../utils/queryLeaderBoard';
 // import queryLeaderBoard from '../utils/queryLeaderBoard';
 
 export default class LeaderBoardService {
@@ -34,6 +34,14 @@ export default class LeaderBoardService {
 
     const leaderBoard = await this._db.query(
       `${getQuery(typePath)}`,
+      { type: QueryTypes.SELECT },
+    );
+    return leaderBoard as ILeaderBoard[];
+  }
+
+  public async getLeaderBoardGeral(): Promise<ILeaderBoard[]> {
+    const leaderBoard = await this._db.query(
+      `${queryGeral}`,
       { type: QueryTypes.SELECT },
     );
     return leaderBoard as ILeaderBoard[];

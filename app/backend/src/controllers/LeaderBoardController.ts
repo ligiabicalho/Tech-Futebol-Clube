@@ -8,8 +8,13 @@ export default class LeaderBoardController {
 
   async getLeaderBoard(req: Request, res: Response): Promise<void> {
     const { path } = req;
-    console.log(path, typeof path);
+
     const leaderBoard = await this._service.getLeaderBoard(path);
     res.status(statusCodes.OK).json(leaderBoard);
+  }
+
+  async getLeaderBoardGeral(_req: Request, res: Response): Promise<void> {
+    const leaderBoardGeral = await this._service.getLeaderBoardGeral();
+    res.status(statusCodes.OK).json(leaderBoardGeral);
   }
 }
