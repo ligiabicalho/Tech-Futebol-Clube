@@ -1,6 +1,4 @@
-import { Model } from 'sequelize';
-
-export interface ILeaderBoard extends Model{
+export interface ILeaderBoard {
   name: string,
   totalPoints: number,
   totalGames: number,
@@ -9,4 +7,6 @@ export interface ILeaderBoard extends Model{
   totalLosses: number,
   goalsFavor: number,
   goalsOwn: number,
+  goalsBalance: number,
+  efficiency: number;
 }
