@@ -29,7 +29,7 @@ export default class MatchController {
     const update = await this._service.updateGoals(id as string, body as IGoals);
     if (!update) throw new BadRequest('Gols não atualizados.');
 
-    res.status(statusCodes.OK).json({ message: 'Goal!' });
+    res.status(statusCodes.OK).json({ message: 'Updated match!' });
   }
 
   async create(req: Request, res: Response): Promise<void> {

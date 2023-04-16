@@ -21,6 +21,26 @@ export default class MatchService {
     return matches;
   }
 
+  /* async getAll(inProgress: string | undefined): Promise<Match[]> {
+    const inProgressBoolean = (inProgress === 'true');
+    if (inProgress) {
+      return await this._matchModel.findAll({
+        where: { inProgress }
+      },
+        {
+      include: [
+        { model: Team, as: 'homeTeam', attributes: { exclude: ['id'] } },
+        { model: Team, as: 'awayTeam', attributes: { exclude: ['id'] } },
+      ],
+    });
+    } return await this._matchModel.findAll({
+      include: [
+        { model: Team, as: 'homeTeam', attributes: { exclude: ['id'] } },
+        { model: Team, as: 'awayTeam', attributes: { exclude: ['id'] } },
+      ],
+    });
+  } */
+
   async updateProgress(id: string): Promise<number> {
     const [updateMatch] = await this._matchModel.update(
       { inProgress: 0 },

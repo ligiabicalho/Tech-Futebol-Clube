@@ -1,4 +1,3 @@
-// pq não posso usar const e maiúsculas como no TrybeSmith??
 // enum -> define/restringe um conjunto de valores permitidos para constantes.
 enum statusCodes {
   OK = 200,
