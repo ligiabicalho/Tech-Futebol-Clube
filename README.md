@@ -106,7 +106,7 @@ Para rodar os testes de integração desenvolvidos por mim, entre na pasta backe
 
 ## Banco de Dados
   1. ### Diagrama ER
-  ![diagram-er](https://github.com/ligiabicalho/Tech-Futebol-Clube/main/tfc-diagrama-er.png)  
+  ![diagram-er](https://raw.githubusercontent.com/ligiabicalho/Tech-Futebol-Clube/main/tfc-diagrama-er.png)  
 
   2. ### Seeders  
   O banco de dados contém:
