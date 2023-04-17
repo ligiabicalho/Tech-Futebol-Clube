@@ -42,8 +42,10 @@ O desenvolvimento teve que respeitar as regras de negócio para que a API seja c
 Para algumas rotas, como adicionar uma partida, é necessário ter um `token`, portanto a pessoa usuária deverá estar logada para fazer as alterações.  
 
 ## Demo  
+> Deploy: *Em breve*
 
-  *Em breve*
+[tfc.webm](https://user-images.githubusercontent.com/106452876/230155439-17047d3a-def0-425e-80e0-a0b52f9e8da1.webm)
+
 
 <p align="right"><a href="#sparkles-projeto-tech-futebol-clube-soccer">(De volta ao topo)</a></p>
 
