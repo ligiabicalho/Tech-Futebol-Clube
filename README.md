@@ -345,22 +345,23 @@ Para algumas rotas, como adicionar uma partida, é necessário ter um `token`, p
 #### **Endpoint:** `/matches/:id/finish`
 - <details><summary>:closed_lock_with_key: Método PATCH</summary>
   Respostas  
+
     - Status: 200 OK  
       ```json
-      { "message": "Finished" }
+        { "message": "Finished" }
       ```
     
     - Status: 401 Unauthorized
       ```json
-      { "message": "Token not found" }
+        { "message": "Token not found" }
       ```
 
       ```json
-      { "message": "Token must be a valid token" }
+        { "message": "Token must be a valid token" }
       ```
 </details>
 
-#### **Endpoint:** `/leaderboard
+#### **Endpoint:** `/leaderboard`
 - <details><summary>Método GET</summary>
 
   Resposta  
@@ -396,7 +397,7 @@ Para algumas rotas, como adicionar uma partida, é necessário ter um `token`, p
     ```
 </details>
 
-#### **Endpoint:** `/leaderboard/home
+#### **Endpoint:** `/leaderboard/home`
 - <details><summary>Método GET</summary>
 
   Resposta  
