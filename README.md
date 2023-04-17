@@ -605,18 +605,21 @@ Configuração dos `dockerfiles` referente ao front e back-end, para integrar as
 22. `(Bônus TDD)` Desenvolva testes de integração para a rota `/leaderboard`, considerando o contrato dos próximos requisitos.
 
   - <details><summary><strong>Leaderboard Home</strong></summary> 
+
     23. Desenvolva o endpoint `/leaderboard/home` de forma que retorne as informações do desempenho dos **times da casa** com as seguintes propriedades: `name`, `totalPoints`, `totalGames`, `totalVictories`, `totalDraws`, `totalLosses`, `goalsFavor` e `goalsOwn`.
     24. Desenvolva o endpoint `/leaderboard/home` de forma que seja possível **filtrar** as classificações dos times da casa na tela de classificação do front-end com os dados iniciais do banco de dados, incluindo as propriedades `goalsBalance` e `efficiency`, além das propriedades do requisito anterior.
     25. Desenvolva o endpoint `/leaderboard/home` de forma que seja possível filtrar as classificações dos times da casa na tela de classificação do front-end, e atualizar a tabela ao inserir a partida Corinthians 2 X 1 Internacional.
     </details>
 
   - <details><summary><strong>Leaderboard away</strong></summary> 
+
     26. Desenvolva o endpoint `/leaderboard/away` de forma que retorne as informações do desempenho dos **times visitantes** com as mesmas propriedades do req. 23.
     27. Desenvolva o endpoint `/leaderboard/away`, de forma que seja possível **filtrar** as classificações dos times quando visitantes na tela de classificação do front-end, com os dados iniciais do banco de dados, incluindo as propriedades `goalsBalance` e `efficiency`, além das propriedades do requisito anterior.
     28. Desenvolva o endpoint `/leaderboard/away` de forma que seja possível filtrar as classificações dos times quando visitantes na tela de classificação do front-end e atualizar a tabela ao inserir a partida Corinthians 2 X 1 Internacional.
     </details>
 
   - <details><summary><strong>Leaderboard</strong></summary> 
+
     29. Desenvolva o endpoint `/leaderboard` de forma que seja possível filtrar a **classificação geral** dos times na tela de classificação do front-end com os dados iniciais do banco de dados.
     30. (Bônus) Desenvolva o endpoint `/leaderboard` de forma que seja possível filtrar a classificação geral dos times na tela de classificação do front-end e atualizar a tabela ao inserir a partida Flamengo 3 X 0 Napoli-SC.
     </details>
@@ -630,7 +633,7 @@ Configuração dos `dockerfiles` referente ao front e back-end, para integrar as
 
 100% dos requisitos solicitados foram desenvolvidos.
 
-No entanto, podemos pensar em ampliar criando rotas para criação e edição do perfil do usuário.
+No entanto, podemos pensar em ampliar a API criando rotas para criação e edição do perfil do usuário.
 
 ## Desenvolvedora
 
