@@ -9,18 +9,20 @@ O `TFC` é um site informativo sobre partidas e classificações de futebol!
 - [Tecnologias utilizadas](#tecnologias-utilizadas)
   - [Front-end](#front-end)
   - [Back-end](#back-end)
-- [Instalação](#instalação)
-  - [Docker](#docker)
-  - [Rodando testes](#rodando-os-testes)
-- [Uso](#uso)
-  - [Banco de Dados](#banco-de-dados)
-    - [Diagrama ER](#diagrama-er)
-    - [Seeders](#seeders)
-    - [Exemplo de um arquivo `.env`](#exemplo-de-um-arquivo-env)
+  - [Banco de dados](#banco-de-dados)
+- [Uso](#documentação-da-api)
   - [Documentação da API](#documentação-da-api)
     - [Visão Geral](#visão-geral)
     - [Exemplos](#Corpo-das-requisições-e-respostas)
+  - [Banco de Dados](#banco-de-dados-1)
+    - [Diagrama ER](#diagrama-er)
+    - [Seeders](#seeders)
+    - [Exemplo de um arquivo `.env`](#exemplo-de-um-arquivo-env)
+- [Instalação](#instalando-localmente)
+  - [Docker](#docker)
+  - [Rodando testes](#rodando-os-testes)
 - [Desenvolvedora](#desenvolvedora)
+- [Agradecimentos](#agradecimentos)
 
 
 <br/>
@@ -68,143 +70,88 @@ Há um relacionamento entre as tabelas `teams` e `matches` para fazer as atualiz
 
 <p align="right"><a href="#sparkles-projeto-tech-futebol-clube-soccer">(De volta ao topo)</a></p>
 
-# Instalação
-> ⚠️ Configurações mínimas para execução do projeto
-> 
-> Na sua máquina você deve ter:
-> 
-> - Preferencialmente Sistema Operacional Distribuição Unix  
-> - Node versão 16  
-> - Docker  
-> - Docker-compose versão >=1.29.2  
-
-1. Clone o repositório   
-  `git clone git@github.com:ligiabicalho/Tech-Futebol-Clube.git`
-2. Navegue até a pasta do repositório clonado  
-    `cd Tech-Futebol-Clube`
-3. Instale as dependências no diretório raiz  
-  `npm install`
-
-## **Docker**
-1. Na raíz do projeto rode o comando:  
-`npm run compose:up`  
-2. Em seguida abra o terminal interativo do container:  
-`docker exec -it app_backend sh`  
-3. Instale as dependências dentro do container:  
-`npm install`
-
-## **Rodando os testes**
-Para rodar os testes de integração desenvolvidos por mim, entre na pasta backend e rode o comando:  
-- `npm test`
-
-<p align="right"><a href="#sparkles-bem-vindo-ao-repositório-do-projeto-delivery-app">(De volta ao topo)</a></p>
-
-
-<br/>
-
-# Uso
-
-## Banco de Dados
-  1. ### Diagrama ER
-  ![diagram-er](https://raw.githubusercontent.com/ligiabicalho/Tech-Futebol-Clube/main/tfc-diagrama-er.png)  
-
-  2. ### Seeders  
-  O banco de dados contém:
-  - tabela `users` com usuários válidos com hash das senhas e alguns inválidos, estes útimos utilizados para os testes avaliativos.
-  - tabela `teams` com a lista de todos os times que estão participando do campeonato.
-  - tabela `matches` com algumas partidadas finalizadas e outras em andamento.
-
-  3. ### Exemplo de um arquivo `.env`  
-
 ## Documentação da API
 
-1. ### Visão geral
+### **Visão geral**
 
 | Endpoint     | Método HTTP | Descrição               | 
 | :----------- | :---------- | :---------------------- |
-| `/login`     | POST        | Faz o login com usuários do banco de dados 
-| `/login/role`| GET         | :closed_lock_with_key: Retorna o *role* do usuário logado (user ou adm)  |
-| `/teams`     | GET         | Retorna todos os times do campeonato
-| `/teams/:id` | GET         | Retorna o time especificado no id
-| `/matches`   | GET         | Retorna todas as partidas 
-| `/matches?inProgress=true` | GET         | Retorna as partidas em andamento.
-| `/matches?inProgress=false`| GET         | Retorna as partidas finalizadas.
-| `/matches`           | POST         | :closed_lock_with_key: Insere uma nova partida.
-| `/matches/:id`    | PATCH       | :closed_lock_with_key: Atualiza a partida de acordo com seu id.
-| `/matches/:id/finish` | PATCH       | :closed_lock_with_key: Finaliza uma partida em andamento.
-| `/leaderboard`       | GET          | Retorna a classificação geral do campeonato.
-| `/leaderboar/home`   | GET          | Retorna a classificação dos times mandantes.
-| `/leaderboard/away`  | GET          | Retorna a classificação dos times visitantes.
+| [`/login`](#endpoint-login)   | POST        | Faz o login com usuários do banco de dados 
+| [`/login/role`](#endpoint-loginrole)| GET         | :closed_lock_with_key: Retorna o *role* do usuário logado (user ou adm)  |
+| [`/teams`](#endpoint-teams)     | GET         | Retorna todos os times do campeonato
+| [`/teams/:id`](#parâmetro-id-teamsid) | GET         | Retorna o time especificado no id
+| [`/matches`](#endpoint-matches)   | GET         | Retorna todas as partidas 
+| [`/matches`](#endpoint-matches)           | POST         | :closed_lock_with_key: Insere uma nova partida em andamento.
+| [`/matches?inProgress=true`](#parâmetro-inprogress-matchesinprogress) | GET         | Retorna as partidas em andamento.
+| [`/matches?inProgress=false`](#parâmetro-inprogress-matchesinprogress)| GET         | Retorna as partidas finalizadas.
+| [`/matches/:id`](#parâmetro-id-matchesid)    | PATCH       | :closed_lock_with_key: Atualiza a partida de acordo com seu id.
+| [`/matches/:id/finish`](#endpoint-matchesidfinish) | PATCH       | :closed_lock_with_key: Finaliza uma partida em andamento.
+| [`/leaderboard`](#endpoint-leaderboard)       | GET          | Retorna a classificação geral do campeonato.
+| [`/leaderboar/home`](#endpoint-leaderboardhome)   | GET          | Retorna a classificação dos times mandantes.
+| [`/leaderboard/away`](#endpoint-leaderboardaway)  | GET          | Retorna a classificação dos times visitantes.
 
-:closed_lock_with_key: : Necessário que o token gerado no login seja enviado no headers como "Authorization".
+:closed_lock_with_key: : Necessário que o `token` gerado no login seja enviado no headers como _"Authorization"_.
 
 <p align="right"><a href="#sparkles-projeto-tech-futebol-clube-soccer">(De volta ao topo)</a></p>
 
-2. ### Corpo das requisições e respostas  
+### **Corpo das requisições e respostas**  
 > *Clique nas setas para ver mais*  
 
-- #### **Endpoint:** `/login`  
+#### **Endpoint:** `/login`  
 
-<details>
-  <summary>Método POST </summary>  
-Exemplo de corpo da requisção válido  
+- <details><summary>Método POST </summary>  
+  Exemplo de corpo da requisção válido  
 
-  ```
-  {
-    "email": "user@user.com",
-    "password": "secret_user", 
-  }
-  ```  
+    ```json
+    {
+      "email": "user@user.com",
+      "password": "secret_user", 
+    }
+    ```  
 
-Respostas 
-- Status: 200 OK  
-  ```
-  {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjU0NTI3MTg5fQ.XS_9AA82iNoiVaASi0NtJpqOQ_gHSHhxrpIdigiT-fc" // jsonwebtoken gerado
-  }
-  ```
-  
-- Status: 400 Bad Request
-  ```
-  { "message": "All fields must be filled" }
-  ```
-  
-- Status: 401 Unauthorized
-  ```
-  { "message": "Invalid email or password" }
-  ```
-</details>
-
-- #### **Endpoint:** `/login/role`
-
-<details>
-  <summary>Método GET</summary>  
-> :closed_lock_with_key: Deve receber um <i>header</i> com parâmetro <i>authorization</i>, contendo o <i>token</i> gerado no login.
-
-Respostas  
+  Respostas 
   - Status: 200 OK  
+    ```json
+    {
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjU0NTI3MTg5fQ.XS_9AA82iNoiVaASi0NtJpqOQ_gHSHhxrpIdigiT-fc" // jsonwebtoken gerado
+    }
     ```
-    { "role": "admin" }
+    
+  - Status: 400 Bad Request
+    ```json
+    { "message": "All fields must be filled" }
     ```
     
   - Status: 401 Unauthorized
-    ```
-    { "message": "Token not found" }
-    ```
-
-    ```
-    { "message": "Token must be a valid token" }
+    ```json
+    { "message": "Invalid email or password" }
     ```
 </details>
 
-- #### **Endpoint:** `/teams`
+#### **Endpoint:** `/login/role`
+- <details><summary>:closed_lock_with_key: Método GET</summary>  
+  Respostas  
+    - Status: 200 OK  
+      ```json
+      { "role": "admin" }
+      ```
+      
+    - Status: 401 Unauthorized
+      ```json
+      { "message": "Token not found" }
+      ```
 
-<details>
-  <summary>Método GET</summary>
+      ```json
+      { "message": "Token must be a valid token" }
+      ```
+</details>
+
+#### **Endpoint:** `/teams`
+- <details><summary>Método GET</summary>
 
   Resposta  
   - Status: 200 OK
-    ```
+    ```json
     [
       {
         "id": 1,
@@ -223,14 +170,12 @@ Respostas
     ```
 </details>
 
-- #### **Parâmetro id:** `/teams/:id`
-
-<details>
-  <summary>Método GET</summary>
+#### **Parâmetro id:** `/teams/:id`
+- <details> <summary>Método GET</summary>
 
   Resposta 
   - Status: 200 OK  
-    ```
+    ```json
     {
       "id": 5,
       "teamName": "Cruzeiro"
@@ -238,14 +183,12 @@ Respostas
     ```
 </details>
 
-- #### **Endpoint:** `/matches`
-
-<details>
-  <summary>Método GET</summary>
+#### **Endpoint:** `/matches`
+- <details><summary>Método GET</summary>
 
   Resposta 
   - Status: 200 OK  
-    ```
+    ```json
       [
         {
           "id": 1,
@@ -278,51 +221,54 @@ Respostas
         }
       ]
     ```
-
 </details>
 
-<details>
-  <summary>Método POST</summary>
-  > :closed_lock_with_key: Deve receber um <i>header</i> com parâmetro <i>authorization</i>, contendo o <i>token</i> gerado no login.  
-
+- <details><summary>:closed_lock_with_key: Método POST</summary>
   Requisição  
 
-  ```
+  ```json
   {
     "homeTeamId": 16, // O valor deve ser o id do time
     "awayTeamId": 8, // O valor deve ser o id do time
     "homeTeamGoals": 2,
-    "awayTeamGoals": 2,
+    "awayTeamGoals": 1,
   }
   ```
 
   Respostas 
   - Status: 201 Created  
-    ```
+    ```json
     {
       "id": 1,
       "homeTeamId": 16,
       "homeTeamGoals": 2,
       "awayTeamId": 8,
-      "awayTeamGoals": 2,
+      "awayTeamGoals": 1,
       "inProgress": true,
     }
     ```
   
   - Status: 401 Unauthorized
-    ```
+    ```json
     { "message": "Token not found" }
     ```
 
-    ```
+    ```json
     { "message": "Token must be a valid token" }
+    ```
+  - Status: 404 Not Found
+    ```json
+    { "message": "There is no team with such id!" }
+    ```
+  - Status: 422 Unprocessable Entity
+    ```json
+    { "message": "It is not possible to create a match with two equal teams" }
     ```
 </details>  
 
 
-- #### **Parâmetro inProgress:** `/matches?inProgress=`
-
-<details>
+#### **Parâmetro inProgress:** `/matches?inProgress=`
+- <details>
   <summary>Método GET</summary>
   Opções de query: <i>true</i> ou <i>false</i>  
 
@@ -333,7 +279,7 @@ Respostas
 
   Resposta 
   - Status: 200 OK  
-    ```
+    ```json
     [
       {
         "id": 41,
@@ -367,15 +313,11 @@ Respostas
     ```
 </details>
 
-- #### **Parâmetro id:** `/matches/:id`
-
-<details>
-
-  <summary>Método PATCH</summary>
-  > :closed_lock_with_key: Deve receber um <i>header</i> com parâmetro <i>authorization</i>, contendo o <i>token</i> gerado no login.  
-   
+#### **Parâmetro id:** `/matches/:id`
+- <details><summary>:closed_lock_with_key: Método PATCH</summary>
+ 
   Requisição:
-  ```
+  ```json
   {
     "homeTeamGoals": 3,
     "awayTeamGoals": 1
@@ -384,50 +326,44 @@ Respostas
 
   Respostas 
   - Status: 200 OK  
-    ```
+    ```json
     { "message": "Updated match!" } 
     ```
   
   - Status: 401 Unauthorized
-    ```
+    ```json
     { "message": "Token not found" }
     ```
 
-    ```
+    ```json
     { "message": "Token must be a valid token" }
     ```
 </details>
 
-- #### **Endpoint:** `/matches/:id/finish`
-
-<details>
-
-  <summary>Método PATCH</summary>
-  > :closed_lock_with_key: Deve receber um <i>header</i> com parâmetro <i>authorization</i>, contendo o <i>token</i> gerado no login.  
-
+#### **Endpoint:** `/matches/:id/finish`
+- <details><summary>:closed_lock_with_key: Método PATCH</summary>
   Respostas  
     - Status: 200 OK  
-      ```
+      ```json
       { "message": "Finished" }
       ```
     
     - Status: 401 Unauthorized
-      ```
+      ```json
       { "message": "Token not found" }
       ```
 
-      ```
+      ```json
       { "message": "Token must be a valid token" }
       ```
 </details>
 
-- #### **Endpoint:** `/leaderboard`
-<details>
-  <summary>Método GET</summary>
+#### **Endpoint:** `/leaderboard
+- <details><summary>Método GET</summary>
 
   Resposta  
   - Status: 200 OK
-    ```
+    ```json
     [
       {
         "name": "Palmeiras",
@@ -458,13 +394,12 @@ Respostas
     ```
 </details>
 
-- #### **Endpoint:** `/leaderboard/home`
-<details>
-  <summary>Método GET</summary>
+#### **Endpoint:** `/leaderboard/home
+- <details><summary>Método GET</summary>
 
   Resposta  
   - Status: 200 OK
-    ```
+    ```json
     [
       {
         "name": "Santos",
@@ -495,13 +430,12 @@ Respostas
     ```
 </details>
 
-- #### **Endpoint:** `/leaderboard/away`
-<details>
-  <summary>Método GET</summary>
+#### **Endpoint:** `/leaderboard/away`
+- <details><summary>Método GET</summary>
 
   Resposta  
   - Status: 200 OK
-    ```
+    ```json
     [
       {
         "name": "Palmeiras",
@@ -534,16 +468,71 @@ Respostas
 
 <p align="right"><a href="#sparkles-projeto-tech-futebol-clube-soccer">(De volta ao topo)</a></p>
 
-# Autora
+## Banco de Dados
+  1. #### **Diagrama ER**
+  ![diagram-er](https://raw.githubusercontent.com/ligiabicalho/Tech-Futebol-Clube/main/tfc-diagrama-er.png)  
+
+  2. #### **Seeders**  
+  O banco de dados contém:
+  - tabela `users` com usuários válidos com hash das senhas e alguns inválidos, estes útimos utilizados para os testes avaliativos.
+  - tabela `teams` com a lista de todos os times que estão participando do campeonato.
+  - tabela `matches` com algumas partidadas finalizadas e outras em andamento.
+
+  3. #### **Exemplo de um arquivo `.env`** 
+  > Se estiver utilizar Docker as informações do `DB_*` vem do docker-compose, caso contrário se utilizar o MySql instalado na sua máquina.
+  ```js
+    JWT_SECRET=jwt_secret
+    APP_PORT=3001
+    DB_USER=seu_user
+    DB_PASS=sua_senha
+    DB_HOST=localhost
+    DB_PORT=3002
+  ```
+
+<p align="right"><a href="#sparkles-projeto-tech-futebol-clube-soccer">(De volta ao topo)</a></p>
+
+## Instalando localmente
+> ⚠️ Configurações mínimas para execução do projeto
+> 
+> Na sua máquina você deve ter:
+> 
+> - Preferencialmente Sistema Operacional Distribuição Unix  
+> - Node versão 16  
+> - Docker  
+> - Docker-compose versão >=1.29.2  
+
+1. Clone o repositório   
+  `git clone git@github.com:ligiabicalho/Tech-Futebol-Clube.git`
+2. Navegue até a pasta do repositório clonado  
+    `cd Tech-Futebol-Clube`
+3. Instale as dependências no diretório raiz  
+  `npm install`
+
+### **Docker**
+1. Na raíz do projeto rode o comando:  
+  `npm run compose:up`  
+2. Em seguida abra o terminal interativo do container:  
+  `docker exec -it app_backend sh`  
+3. Instale as dependências dentro do container:  
+  `npm install`
+
+### **Rodando os testes**
+Para rodar os testes de integração desenvolvidos por mim, entre na pasta backend e rode o comando:  
+- `npm test`
+
+<p align="right"><a href="#sparkles-bem-vindo-ao-repositório-do-projeto-delivery-app">(De volta ao topo)</a></p>
+
+## Desenvolvedora
 
 <a href="https://github.com/ligiabicalho">
-        <img src="https://avatars.githubusercontent.com/u/108960742" width="100px" alt="Camila Falaschi"/>
-        <p>Lígia Bicalho</p>
-      </a>
+  <img src="https://avatars.githubusercontent.com/u/108960742" width="100px" alt="Ligia Bicalho"/>
+  <a href="https://linkedin.com/in/ligiabicalho" target="_blank">
+  <p>:information_source: Lígia Bicalho</p>
+</a>
 
-# Agradecimentos
+## Agradecimentos
 
-A Trybe pelos ensinamentos, elaboração do desafio e mentorias técnica.
+A Trybe e seus instrutures pelos ensinamentos, elaboração do desafio e mentorias técnicas.
 Aos colegas de turma pelas valiosas discussões, devidamente referenciadas nos comentários do código.
 
 <p align="right"><a href="#sparkles-projeto-tech-futebol-clube-soccer">(De volta ao topo)</a></p>
