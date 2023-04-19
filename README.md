@@ -5,6 +5,7 @@ O `TFC` é um site informativo sobre partidas e classificações de futebol.
 
 - [Sobre o projeto](#sobre-o-projeto)
   - [Contexto](#man_technologist-contexto)
+  - [Habilidades](#habilidades)
   - [Demo](#demo)
 - [Tecnologias utilizadas](#tecnologias-utilizadas)
   - [Front-end](#front-end)
@@ -35,11 +36,22 @@ O `TFC` é um site informativo sobre partidas e classificações de futebol.
 
 O desafio deste projeto foi desenvolver uma API (utilizando o método TDD) e integrar, através do docker-compose, as aplicações para que elas funcionem consumindo um banco de dados relacional.
 
-Minha responsabilidade foi construir o back-end dockerizado (dockerfile do back e front) utilizando modelagem de dados através do Sequelize.  
+Minha responsabilidade foi construir o back-end dockerizado (dockerfile do back e front) utilizando modelagem de dados através do Sequelize. E aplicar os conceitos de Programação Orientada a Objeto (POO) e os princípios SOLID.
 
 O desenvolvimento teve que respeitar as regras de negócio para que a API seja consumida adequadamente pelo front-end disponibilizado, que exibe as informações tabeladas para a pessoa usuária do sistema.
 
-Para algumas rotas, como adicionar uma partida, é necessário ter um `token`, portanto a pessoa usuária deverá estar logada para fazer as alterações.  
+Para algumas rotas, como adicionar uma partida, é necessário ter um `token`, portanto a pessoa usuária deverá estar logada para fazer as alterações, para tanto foi utilizado JWT para autenticação.  
+
+## Habilidades
+
+- Dockerização dos apps, network, volume e compose;
+- Modelagem de dados com MySQL através do Sequelize;
+- Criação e associação de tabelas usando models do sequelize;
+- Construção de uma API REST com endpoints para consumir os models criados;
+- Construção de um CRUD com TypeScript, utilizando ORM;
+- Autenticação de rotas utilizando JWT.
+- Programação Orientada a Objetos e princípios SOLID:
+  - Implementar, em TypeScript: `Classes`, `Instâncias`, `Atributos` e `Métodos`.
 
 ## Demo  
 > Deploy: *Em breve*
@@ -58,7 +70,7 @@ Para algumas rotas, como adicionar uma partida, é necessário ter um `token`, p
 - React js  
 
 ## Back-end  
-- JavaScript / TypeScript
+- TypeScript
 - Node.js
 - Express.js
 - Sequelize
